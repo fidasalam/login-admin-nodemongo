@@ -1,0 +1,60 @@
+<!-- home.ejs -->
+
+<%- include('header') -%>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
+                    class="fas fa-user-secret me-2"></i>ADMIN</div>
+            <div class="list-group list-group-flush my-3">
+                <a href="/route/adminhome" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="fas fa-tachometer-alt me-2"></i>User List </a>
+                <a href="/route/search" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-tachometer-alt me-2"></i>Search User</a>
+                <a href="/route/useradd" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-project-diagram me-2"></i>Add User</a>
+                <a href="/route/updateuser" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-chart-line me-2"></i>Update User</a>
+                <a href="/route/delete" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-paperclip me-2"></i>Delete User</a>
+              
+                <a href="/route/adminlogout" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                        class="fas fa-power-off me-2"></i>Logout</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    
+                </div>
+                
+
+                <div class="row my-5">
+                    <h2 class=" mb-3">Delete User</h2>
+                    <form action="/route/delete" method="post" class="pt-1">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="enter email" name="email"><br>
+                           
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary  mt-3 mb-3">Delete</button>
+                    
+                        <div>
+                    <div class="col">
+                        
+                        <h4><%=locals.result %></h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+<%- include('footer') -%>

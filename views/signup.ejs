@@ -1,0 +1,28 @@
+<%- include('header') %>
+
+<div class="text-center center-div" id="signup">
+    <div class="container w-50 border py-5 bg-light">
+        <div class="title pb-4">
+            <h2 class="font-weight-bold">Sign Up</h2>
+            <span>Please enter your details.</span>
+        </div>
+        <form action="/route/signup" method="post" class="pt-1">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name" name="firstname">
+                <input type="text" class="form-control mt-2" placeholder="Last Name" name="lastname">
+                <input type="text" class="form-control mt-2" placeholder="Email" name="email">
+                <input type="text" class="form-control mt-2" placeholder="Phone" name="phone">
+                <input type="password" class="form-control mt-2" name="password" placeholder="Password">
+            </div>
+            <% if (locals.result && locals.result !== '') { %>
+                <div class="alert alert-danger mt-3">
+                    <%= locals.result %>
+                </div>
+            <% } %>
+            <button type="submit" class="btn btn-primary mt-3 mb-3">Sign Up</button>
+            <small>Already have an account? <a href="/route/login">Login here</a></small>
+        </form>
+    </div>
+</div>
+
+<%- include('footer') %>
