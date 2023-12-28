@@ -95,12 +95,12 @@ const userController = {
                     } else {
                         // Clear the session cookie
                         res.clearCookie('sessionId');
-                        res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                        res.render('base', { logout: "Logout Successfully..!" });
                     }
                 });
             } else {
                 // If there is no session, consider the user as logged out and render the base page
-                res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                res.render('base', {  logout: "Logout Successfully..!" });
             }
         } catch (error) {
             console.error(error);
@@ -239,12 +239,12 @@ const userController = {
                     } else {
                         // Clear the session cookie
                         res.clearCookie('sessionId');
-                        res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                        res.render('base', {  logout: "Logout Successfully..!" });
                     }
                 });
             } else {
                 // If there is no session, consider the user as logged out and render the base page
-                res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                res.render('base', { logout: "Logout Successfully..!" });
             }
         } catch (error) {
             console.error(error);
