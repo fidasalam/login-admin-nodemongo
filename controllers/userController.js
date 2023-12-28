@@ -84,20 +84,27 @@ const userController = {
             res.status(500).render('error', { error: "Error during login." });
         }
     },
-
-    logout: async (req, res) => {
+    logout: (req, res) => {
         try {
-            req.session.destroy(function (err) {
-                if (err) {
-                    console.error(err);
-                    res.status(500).render('error', { error: "Error logging out." });
-                } else {
-                    res.render('base', { logout: "Logout Successfully..!" });
-                }
-            });
+            if (req.session) {
+                // Destroy the session
+                req.session.destroy((err) => {
+                    if (err) {
+                        console.error(err);
+                        res.status(500).send("Error");
+                    } else {
+                        // Clear the session cookie
+                        res.clearCookie('sessionId');
+                        res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                    }
+                });
+            } else {
+                // If there is no session, consider the user as logged out and render the base page
+                res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+            }
         } catch (error) {
             console.error(error);
-            res.status(500).render('error', { error: "Error logging out." });
+            res.status(500).send("Error");
         }
     },
 
@@ -222,18 +229,35 @@ const userController = {
     },
 
     adminLogout: (req, res) => {
-        req.session.destroy(function (err) {
-            if (err) {
-                console.log(err);
-                res.send("Error");
+        try {
+            if (req.session) {
+                // Destroy the session
+                req.session.destroy((err) => {
+                    if (err) {
+                        console.error(err);
+                        res.status(500).send("Error");
+                    } else {
+                        // Clear the session cookie
+                        res.clearCookie('sessionId');
+                        res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                    }
+                });
             } else {
+                // If there is no session, consider the user as logged out and render the base page
                 res.render('base', { title: "Express", logout: "Logout Successfully..!" });
             }
-        });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Error");
+        }
     },
 
     errorPage: (req, res) => {
         res.render('error', { error: "An error occurred." });
+    },
+    
+    logoutsuccess: (req, res) => {
+        res.render('logout-success');
     }
 };
 

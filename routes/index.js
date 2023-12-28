@@ -37,4 +37,6 @@ router.get('/adminlogout', userController.adminLogout);
 // Error route
 router.get('/error', userController.errorPage);
 
+router.get('/logout-success', userController.logoutsuccess);
+
 module.exports = router;

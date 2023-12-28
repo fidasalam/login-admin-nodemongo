@@ -185,3 +185,37 @@ a:hover {
   border-radius: 5px;
   text-align: center;
 }
+.logout-success-container {
+  margin-top: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Styles for the container */
+.logout-success-content {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the title */
+.logout-success-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logout-success-title h2 {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.logout-success-title span {
+  font-size: 14px;
+  color: #999;
+}
