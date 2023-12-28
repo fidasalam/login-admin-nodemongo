@@ -33,5 +33,25 @@ connect.then(() => {
         }
     });
 
-const collection = mongoose.model("data", LoginSchema);
-module.exports = collection;
+// Define DeletedUserSchema
+    const DeletedUserSchema = new mongoose.Schema({
+        deletedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'UserData', // Reference to the LoginSchema model
+            required: true
+        },
+        deletedAt: {
+            type: Date,
+            default: Date.now,
+            required: true
+        },
+       
+       
+    });
+    
+
+    const CombinedSchema = {
+        collection: mongoose.model('UserData', LoginSchema),
+        DeletedUser: mongoose.model('DeletedUserData', DeletedUserSchema)
+    };
+module.exports = CombinedSchema;

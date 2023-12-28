@@ -1,4 +1,4 @@
-const collection = require('../models/userModel');
+const { collection, DeletedUser } = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const express = require("express");
 const router = express.Router();
@@ -95,12 +95,12 @@ const userController = {
                     } else {
                         // Clear the session cookie
                         res.clearCookie('sessionId');
-                        res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                        res.render('base', {  logout: "Logout Successfully..!" });
                     }
                 });
             } else {
                 // If there is no session, consider the user as logged out and render the base page
-                res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                res.render('base', { logout: "Logout Successfully..!" });
             }
         } catch (error) {
             console.error(error);
@@ -220,13 +220,32 @@ const userController = {
     deleteUser: async (req, res) => {
         try {
             const userId = req.params.id;
+            
+            // Find the user to be deleted
+            const userToDelete = await collection.findById(userId);
+    
+            if (!userToDelete) {
+                return res.status(404).render('error', { error: "User not found." });
+            }
+    
+            // Save the user to another collection (assuming you have another collection called 'deletedUsers')
+            await DeletedUser.create({
+                deletedBy: userToDelete._id,
+                deletedAt: new Date(),
+                ...userToDelete.toObject(),
+            }),
+                // Delete the user from the current collection
             await collection.findByIdAndDelete(userId);
+
+
+
             res.redirect('/route/adminhome');
         } catch (error) {
-            console.log("Error:", error);
+            console.error("Error:", error);
             res.status(500).render('error', { error: "Error deleting user." });
         }
     },
+    
 
     adminLogout: (req, res) => {
         try {
@@ -239,12 +258,12 @@ const userController = {
                     } else {
                         // Clear the session cookie
                         res.clearCookie('sessionId');
-                        res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                        res.render('base', {  logout: "Logout Successfully..!" });
                     }
                 });
             } else {
                 // If there is no session, consider the user as logged out and render the base page
-                res.render('base', { title: "Express", logout: "Logout Successfully..!" });
+                res.render('base', {  logout: "Logout Successfully..!" });
             }
         } catch (error) {
             console.error(error);
