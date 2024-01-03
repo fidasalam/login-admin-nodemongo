@@ -95,20 +95,17 @@ const userController = {
                     } else {
                         // Clear the session cookie
                         res.clearCookie('sessionId');
-<<<<<<< HEAD
+
                         res.render('base', {  logout: "Logout Successfully..!" });
-=======
-                        res.render('base', { logout: "Logout Successfully..!" });
->>>>>>> 75c0b4b7d72278a15f61da423189dbaf670afd30
                     }
-                });
+                });     
+
             } else {
                 // If there is no session, consider the user as logged out and render the base page
-<<<<<<< HEAD
+
                 res.render('base', { logout: "Logout Successfully..!" });
-=======
-                res.render('base', {  logout: "Logout Successfully..!" });
->>>>>>> 75c0b4b7d72278a15f61da423189dbaf670afd30
+
+
             }
         } catch (error) {
             console.error(error);
@@ -271,11 +268,9 @@ const userController = {
                 });
             } else {
                 // If there is no session, consider the user as logged out and render the base page
-<<<<<<< HEAD
+
                 res.render('base', {  logout: "Logout Successfully..!" });
-=======
-                res.render('base', { logout: "Logout Successfully..!" });
->>>>>>> 75c0b4b7d72278a15f61da423189dbaf670afd30
+
             }
         } catch (error) {
             console.error(error);
@@ -295,3 +290,4 @@ const userController = {
 
 
 module.exports = userController;
+
